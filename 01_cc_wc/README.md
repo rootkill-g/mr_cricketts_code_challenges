@@ -68,7 +68,7 @@ If the program is called without any flags then the program will print the gener
   <line_count> <word_count> <byte_count> <file_name>
 ```
 which is a result of the following subroutine:
-      ```c
+```bash
       if (argc == 2) {
       	 // Check if the first character of the variable is character '-' (starting of a flag) and check if the second character will not result in a valid flag
 	    // Report to the user that the flag was invalid and prints Valid Flags before exiting.
@@ -90,7 +90,7 @@ which is a result of the following subroutine:
 	       // Increment the word count by 1
 	 // Print the generic result
       }
-      ```
+```
 
 <br />
 This concludes the Code Challenge #1 🎉
