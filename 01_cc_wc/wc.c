@@ -28,6 +28,19 @@ void count_chars(char *file_name) {
   print_result(cc, file_name);
 }
 
+void count_lines(char *file_name) {
+  long cl = 0;
+  char c;
+  FILE *f_reader = fopen(file_name, "r");
+
+  while ((c = fgetc(f_reader)) != EOF) {
+    if (c == '\n')
+      ++cl;
+  }
+
+  print_result(cl, file_name);
+}
+
 int main(int argc, char **argv) {
   int exit_code = 0;
   if (argc != 3) {
@@ -45,7 +58,7 @@ int main(int argc, char **argv) {
     }
     else if (strcmp(flag, cline) == 0) {
       exit_code = 0;
-      printf("RECEIVED_FLAG = Print Line Counts Flag.\n");
+      count_lines(argv[2]);
     }
     else if (strcmp(flag, cword) == 0) {
       exit_code = 0;
