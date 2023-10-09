@@ -44,7 +44,7 @@ If when the passed arguments count equates with the set condition, the program c
 
 If the program was passed the `-c` flag along with a valid file name, then the program takes the file name and opens it, and start counting characters in the file until it finds `EOF` (End Of File), after which the program call the `print_result(c, file_name)` function with count of characters and file name to finally print the result.
 
-If the program was passed the '-l' flag along with a valid file name, then the program calls the function `count_lines(<file_name>)` and which then initializes one long int `long cl = 0;` and a char to keep track of `\n` new line characters in the file, `char c;` and then the function opens the file using `FILE *f_reader = fopen(<file_name>, "r");` in read mode and then loops over the file characters and counts all the `\n` (new line characteres), and finally call the `print_result(cl, file_name)` function which prints the result of the program with `-l` flag.
+If the program was passed the `-l` flag along with a valid file name, then the program calls the function `count_lines(file_name)` and which then initializes one long int `long cl = 0;` and a char to keep track of `\n` new line characters in the file, `char c;` and then the function opens the file using `FILE *f_reader = fopen(file_name, "r");` in read mode and then loops over the file characters and counts all the `\n` (new line characteres), and finally call the `print_result(cl, file_name)` function which prints the result of the program with `-l` flag.
 
 <hr />
 At the moment the code does only till this check and prints which flag was passed if the program gets a valid flag (after checking the correct number of arguments passed of course.)
