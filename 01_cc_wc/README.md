@@ -17,7 +17,7 @@ There are three functionalities as per comparing with wc utility that this progr
 The program then will produce the output in the similar format as wc, i.e.:<br />
 `<int> <file_name>`
 
-## Build this program
+### Build this program
 
 To build this program you need to have gcc installed (or any other local C compiler).
 If you have the gcc installed then you can build this program with :<br />
