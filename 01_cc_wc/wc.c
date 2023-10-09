@@ -4,12 +4,6 @@
 #define IN 1    /* Inside a word */
 #define OUT 0   /* Outside a word */
 
-struct Result {
-  int count_res;
-  int exit_code;
-  char *file_name;
-};
-
 void print_result(int c, char *file_name) {
   printf("%d %s\n", c, file_name);
 }
