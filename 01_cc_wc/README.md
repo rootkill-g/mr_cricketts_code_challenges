@@ -42,6 +42,8 @@ which will result in an output:
 The code on invocation runs the main function and checks if the total number of arguments passed to the program are correct or not (i.e., 3, because the first argument will be the program itself).
 If when the passed arguments count equates with the set condition, the program can further proceed to check the value of flag passed and prints the valid flags that the program expects if the so passed flag was an invalid flag.
 
+If the program was passed the `-c` flag along with a valid file name, then the program takes the file name and opens it, and start counting characters in the file until it finds `EOF` (End Of File), after which the program call the `print_result(c, file_name)` function with count of characters and file name to finally print the result.
+
 At the moment the code does only till this check and prints which flag was passed if the program gets a valid flag (after checking the correct number of arguments passed of course.)
 
 #### WIP
