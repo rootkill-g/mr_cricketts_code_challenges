@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 
+#define IN 1    /* Inside a word */
+#define OUT 0   /* Outside a word */
+
 void print_result(int c, char *file_name) {
   printf("%d\t%s\n", c, file_name);
 }
@@ -33,12 +36,29 @@ void count_lines(char *file_name) {
   char c;
   FILE *f_reader = fopen(file_name, "r");
 
-  while ((c = fgetc(f_reader)) != EOF) {
+  while ((c = fgetc(f_reader)) != EOF)
     if (c == '\n')
       ++cl;
+    
+  print_result(cl, file_name);
+}
+
+void count_words(char *file_name) {
+  long cw = 0;
+  char c;
+  int state = OUT;
+  FILE *f_reader = fopen(file_name, "r");
+
+  while ((c = fgetc(f_reader)) != EOF) {
+    if (c == ' ' || c == '\t' || c == '\n') {
+      state = OUT;
+    } else if (state == OUT) {
+      state = IN;
+      ++cw;
+    }
   }
 
-  print_result(cl, file_name);
+  print_result(cw, file_name);
 }
 
 int main(int argc, char **argv) {
@@ -62,7 +82,7 @@ int main(int argc, char **argv) {
     }
     else if (strcmp(flag, cword) == 0) {
       exit_code = 0;
-      printf("RECEIVED_FLAG = Pring Word Counts Flag.\n");
+      count_words(argv[2]);
     }
     else {
       exit_code = 1;
