@@ -24,6 +24,7 @@ void print_usage() {
   print_valid_flags();
   printf("Last argument is the file name (can be relative path): ./test.txt ../test.txt\n");
   printf("\n    Example: ./a.out -c test.txt\n");
+  printf("    Example: ./a.out test.txt\n");
   
 }
 
@@ -148,10 +149,23 @@ int main(int argc, char **argv) {
 	print_valid_flags();
       }
     } else if (argc == 2) {
-      if (argv[2] == NULL) {
+      if (argv[1][0] == '-' && argv[1][1] != 'c' && argv[1][1] != 'l' && argv[1][1] != 'w') {
 	exit_code = 1;
-	printf("\e[1;31mEnter a valid file name.\nFILE NAME CANNOT BE = %s\e[m\n", argv[2]);
-	return 1;
+	printf("\e[1;31mInvalid flag = %s\n", argv[1]);
+	print_valid_flags();
+	return exit_code;
+      }
+      if (argv[1][0] == '-' && (argv[1][1] == 'c' || argv[1][1] == 'l' || argv[1][1] == 'w')) {
+	exit_code = 1;
+	printf("\e[1;31mMissing file name.\e[m\n");
+	print_usage();
+	return exit_code;
+      }
+      if (argv[1] == NULL) {
+	exit_code = 1;
+	printf("\e[1;31mEnter a valid file name.\n");
+	printf("FILE NAME CANNOT BE = %s\e[m\n", argv[2]);
+	return exit_code;
       }
       exit_code = 0;
       long cl, cw, cc, state;
@@ -160,7 +174,7 @@ int main(int argc, char **argv) {
       cl = cw = cc = 0;
       FILE *f_reader = fopen(argv[1], "r");
       if (f_reader == NULL) {
-	printf("Error opening file: %s\n", argv[2]);
+	printf("Error opening file: %s\n", argv[1]);
 	exit_code = 1;
 	return exit_code;
       }
